@@ -3,9 +3,13 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const session = require("express-session");
 const db = require("./firebase.js"); // Adjust the path based on your project structure
+const customerRoutes = require('./routes/customerRoutes');
 
 const app = express();
 const port = 3000;
+
+app.use('/api', customerRoutes);
+
 
 // Set up session middleware
 app.use(
@@ -74,15 +78,6 @@ function ensureAuthenticated(req, res, next) {
     res.redirect("/");
   }
 }
-
-// Usage example
-getAllCustomers()
-  .then((customers) => {
-    console.log("All customers:", customers);
-  })
-  .catch((error) => {
-    console.error("Error fetching customers:", error);
-  });
 
 // Start the server
 app.listen(port, () => {

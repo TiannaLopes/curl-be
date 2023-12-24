@@ -10,5 +10,3 @@ export const getAllCustomers = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
-// Add other controller methods as needed
